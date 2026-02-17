@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stdudnet Management</title>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+    <div class="container">
+    <h2>Student Management Dashboard</h2>
+
+    <input type="text" id="studentName" placeholder="Enter student name">
+    <button class="add-btn" onclick="addStudent()">Add Student</button>
+
+    <input type="text" id="search" placeholder="Search student by name" onkeyup="searchStudent()">
+
+    <div class="message" id="message"></div>
+
+    <div id="studentList"></div>
+
+    <div class="total">Total Students: <span id="total">0</span></div>
+</div>
+
+<script>
+    let students = [];
+    let editIndex = -1;
+
+    function addStudent() {
+        const name = document.getElementById("studentName").value.trim();
+        if (name === "") return;
+
+        if (editIndex === -1) {
+            students.push(name);
+        } else {
+            students[editIndex] = name;
+            editIndex = -1;
+            document.getElementById("message").innerText = "Student updated successfully!";
+        }
+
+        document.getElementById("studentName").value = "";
+        displayStudents();
+    }
+
+    function displayStudents() {
+        const list = document.getElementById("studentList");
+        list.innerHTML = "";
+
+        students.forEach((student, index) => {
+            const div = document.createElement("div");
+            div.className = "student";
+
+            div.innerHTML = `
+                <span>${student}</span>
+                <div>
+                    <button class="edit-btn" onclick="editStudent(${index})">Edit</button>
+                    <button class="delete-btn" onclick="deleteStudent(${index})">Delete</button>
+                </div>
+            `;
+            list.appendChild(div);
+        });
+
+        document.getElementById("total").innerText = students.length;
+    }
+
+    function editStudent(index) {
+        document.getElementById("studentName").value = students[index];
+        editIndex = index;
+        document.getElementById("message").innerText = "";
+    }
+
+    function deleteStudent(index) {
+        students.splice(index, 1);
+        displayStudents();
+    }
+
+    function searchStudent() {
+        const search = document.getElementById("search").value.toLowerCase();
+        const list = document.getElementById("studentList");
+        list.innerHTML = "";
+
+        students
+            .filter(s => s.toLowerCase().includes(search))
+            .forEach((student, index) => {
+                const div = document.createElement("div");
+                div.className = "student";
+
+                div.innerHTML = `
+                    <span>${student}</span>
+                    <div>
+                        <button class="edit-btn" onclick="editStudent(${index})">Edit</button>
+                        <button class="delete-btn" onclick="deleteStudent(${index})">Delete</button>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+    }
+</script>
+
+</body>
+</html>

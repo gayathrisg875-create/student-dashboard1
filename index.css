@@ -1,0 +1,69 @@
+body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        .container {
+            width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .add-btn {
+            width: 100%;
+            background: #07a774;
+            color: #fff;
+            margin-bottom: 10px;
+            
+        }
+
+        .edit-btn {
+            background: #d4a017;
+            color: #fff;
+            margin-right: 5px;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: #fff;
+        }
+
+        .student {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .message {
+            color: green;
+            margin-top: 10px;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-weight: bold;
+        }
